@@ -2,9 +2,9 @@
     <string name="app_name">TestProjectHabits</string>
 
     <string-array name="catNames">
-        <item>Барсик</item>
-        <item>Мурзик</item>
-        <item>Васька</item>
-        <item>Рыжик</item>
+        <item>Очень важная</item>
+        <item>Сильно важная</item>
+        <item>Обычная</item>
+        <item>Неважная</item>
     </string-array>
 </resources>
