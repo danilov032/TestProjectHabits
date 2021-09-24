@@ -13,8 +13,8 @@ interface HabitsDao {
     @Query("SELECT * FROM Habit")
     fun getHabits(): Observable<List<Habit>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertHabit(vararg todo: Habit)
+    @Insert
+    fun insertHabit(todo: Habit)
 
     @Query("DELETE from Habit WHERE name = :name")
     fun deleteHabit(name: String)

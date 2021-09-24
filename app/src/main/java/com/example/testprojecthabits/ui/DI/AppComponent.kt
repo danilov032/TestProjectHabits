@@ -1,5 +1,6 @@
 package com.example.testprojecthabits.ui.DI
 
+import com.example.testprojecthabits.ui.habit.NewHabitActivity
 import com.example.testprojecthabits.ui.main.MainActivity
 import dagger.Component
 
@@ -7,4 +8,5 @@ import dagger.Component
 interface AppComponent {
 
     fun injectActivity(activity: MainActivity)
+    fun injectNewHabitActivity(activity: NewHabitActivity)
 }

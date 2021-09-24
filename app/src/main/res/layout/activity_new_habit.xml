@@ -75,14 +75,15 @@
         android:id="@+id/radio_gr_type_habit">
 
         <RadioButton
-            android:id="@+id/radio_red"
+            android:id="@+id/radio_useful"
             android:text="Полезная"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:checked="true"/>
 
         <RadioButton
-            android:id="@+id/radio_blue"
+            android:id="@+id/radio_harmful"
             android:text="Вредная"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
