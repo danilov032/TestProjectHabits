@@ -5,16 +5,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.testprojecthabits.R
 import com.example.testprojecthabits.ui.DB.dbAbstract
+import com.example.testprojecthabits.ui.DI.AppModule
 import com.example.testprojecthabits.ui.habit.NewHabitActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity () : AppCompatActivity() {
 
-    @Inject lateinit var db: dbAbstract
-
-
+    @Inject lateinit var repository: MainRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 //        DaggerAppComponent.builder()
 //            .appModule(AppModule(application))
 //            .build()
-//            .inject(this)
+//            .injectActivity(this)
 
         fab.setOnClickListener {
             val intent = Intent(this, NewHabitActivity::class.java)
