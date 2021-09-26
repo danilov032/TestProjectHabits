@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testprojecthabits.R
 import com.example.testprojecthabits.ui.DB.dbAbstract
 import com.example.testprojecthabits.ui.DI.AppModule
@@ -32,16 +33,16 @@ class MainActivity : AppCompatActivity() {
             .build()
             .injectActivity(this)
 
+        list_habies.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = customAdapter
+        }
+
         getHabits()
 
         fab.setOnClickListener {
             val intent = Intent(this, NewHabitActivity::class.java)
             startActivity(intent)
-        }
-
-        fab22.setOnClickListener {
-            getHabits()
-            val e = 4
         }
     }
 

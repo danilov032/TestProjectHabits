@@ -5,12 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.main.MainActivity"
+    android:background="#ffead4">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_habies"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -20,30 +22,12 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="end|bottom"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:contentDescription="Описание?"
-        android:src="@drawable/ic_save_2"
-        android:layout_alignParentEnd="true" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="end|bottom"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="Описание?"
-        android:src="@drawable/ic_save_2"
-        android:layout_alignParentStart="true" />
-
+        android:src="@drawable/ic_add"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#ffffff"
+        app:borderWidth="0dp" />
 </RelativeLayout>

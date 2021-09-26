@@ -27,6 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/ed_name_habit"
         android:hint="Назване привычки"
+        android:text="Почистить зубы"
         android:layout_marginBottom="6dp"
         android:layout_marginTop="20dp"/>
 
@@ -37,7 +38,9 @@
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/ed_description_habit"
         android:layout_marginBottom="6dp"
-        android:hint="Описание привычки" />
+        android:hint="Описание привычки"
+        android:lines="2"
+        android:text="Чистить зубы очень надо"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -107,7 +110,8 @@
         app:layout_constraintTop_toBottomOf="@id/tv_description_number"
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/ed_number"
-        app:layout_constraintDimensionRatio="2:1"/>
+        app:layout_constraintDimensionRatio="2:1"
+        android:text="7"/>
 
     <TextView
         android:id="@+id/textView1"
@@ -127,7 +131,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/textView1"
         app:layout_constraintTop_toBottomOf="@id/tv_description_number"
-        app:layout_constraintDimensionRatio="2:1"/>
+        app:layout_constraintDimensionRatio="2:1"
+        android:text="5"/>
 
     <Button
         android:layout_width="wrap_content"

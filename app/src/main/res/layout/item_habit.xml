@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@drawable/background_item"
+    android:layout_margin="3dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -34,7 +36,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Тип привычки: вредная"/>
+            android:text="Тип привычки: вредная"
+            android:id="@+id/tv_type"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,12 +45,12 @@
             android:text="     "
             android:background="@color/black"
             android:layout_marginStart="16dp"
-            />
+            android:layout_marginLeft="16dp" />
     </LinearLayout>
-
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Нужно выполнять 5 раз в 4 дня (дней)"/>
+        android:hint="Нужно выполнять 5 раз в 4 дня (дней)"
+        android:id="@+id/tv_interval"/>
 </LinearLayout>

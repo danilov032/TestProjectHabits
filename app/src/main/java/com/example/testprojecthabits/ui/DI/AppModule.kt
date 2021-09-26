@@ -12,8 +12,8 @@ import javax.inject.Singleton
 @Module
 class AppModule(private val application: Application) {
 
-    @get:Provides
     @Singleton
+    @get:Provides
     val db: HabitsDao = dbAbstract.getDatabase(application).habitsDao()
 
     @Provides

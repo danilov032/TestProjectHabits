@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestProjectHabits</string>
+    <string name="app_name">My habits</string>
 
     <string-array name="catNames">
         <item>Очень важная</item>
