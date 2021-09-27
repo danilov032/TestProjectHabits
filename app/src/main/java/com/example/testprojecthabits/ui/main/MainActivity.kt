@@ -11,6 +11,7 @@ import com.example.testprojecthabits.ui.DI.AppModule
 import com.example.testprojecthabits.ui.DI.DaggerAppComponent
 import com.example.testprojecthabits.ui.HabitsAdapter
 import com.example.testprojecthabits.ui.habit.NewHabitActivity
+import com.example.testprojecthabits.ui.modeles.Habit
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,7 +23,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject lateinit var repository: MainRepository
 
-    val customAdapter = HabitsAdapter()
+//    val customAdapter = HabitsAdapter {habit -> onClickEditHabit(habit) }
+
+    val customAdapter: HabitsAdapter by lazy { HabitsAdapter { habit -> onClickEditHabit(habit) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,5 +59,10 @@ class MainActivity : AppCompatActivity() {
             }, {
                 val er = 10
             })
+    }
+
+    fun onClickEditHabit(habit: Habit){
+        val intent = Intent(this, NewHabitActivity::class.java)
+        startActivity(intent)
     }
 }

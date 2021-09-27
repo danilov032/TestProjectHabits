@@ -18,6 +18,7 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="end|bottom"
@@ -25,9 +26,9 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#ffffff"
+        android:tint="#707070"
         android:contentDescription="Описание?"
         android:src="@drawable/ic_add"
-        android:layout_alignParentEnd="true"
-        android:backgroundTint="#ffffff"
         app:borderWidth="0dp" />
 </RelativeLayout>
