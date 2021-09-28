@@ -2,8 +2,12 @@ package com.example.testprojecthabits.ui.habit
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Point
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Display
+import android.view.View
 import com.example.testprojecthabits.R
 import com.example.testprojecthabits.ui.DI.AppModule
 import com.example.testprojecthabits.ui.DI.DaggerAppComponent
@@ -14,6 +18,9 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_new_habit.*
 import javax.inject.Inject
+import android.widget.LinearLayout
+import androidx.core.view.marginEnd
+import android.util.DisplayMetrics
 
 
 class NewHabitActivity : AppCompatActivity() {
@@ -28,6 +35,8 @@ class NewHabitActivity : AppCompatActivity() {
             .appModule(AppModule(application))
             .build()
             .injectNewHabitActivity(this)
+
+        initScroll()
 
         val isSave = getIntent().getSerializableExtra("isSave")
         var habitM = HabitModel()
@@ -52,8 +61,7 @@ class NewHabitActivity : AppCompatActivity() {
                     color = "000000"
                 )
                 insertHabit(habit)
-            }
-            else {
+            } else {
                 var habit = Habit(
                     id = habitM.id,
                     name = ed_name_habit.text.toString(),
@@ -110,5 +118,46 @@ class NewHabitActivity : AppCompatActivity() {
             }, {
                 val er = 10
             })
+    }
+
+    fun initScroll() {
+        var listColor: List<String> = listOf(
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#707070",
+            "#FFFFFF",
+            "#000000"
+        )
+        val displayMetrics = applicationContext.resources.displayMetrics
+        val height = displayMetrics.heightPixels
+
+        val heightView = height / 10
+
+        for (i in 0..15) {
+            var view = View(this)
+
+            var layoutParams = LinearLayout.LayoutParams(
+                heightView,
+                heightView
+            )
+            layoutParams.setMargins(0, 0, heightView / 2, 0)
+
+
+            view.setLayoutParams(layoutParams)
+            view.setBackgroundColor(Color.parseColor(listColor[i]))
+
+            scroll_container.addView(view)
+        }
     }
 }
