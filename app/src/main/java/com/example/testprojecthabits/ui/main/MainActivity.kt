@@ -12,6 +12,7 @@ import com.example.testprojecthabits.ui.DI.DaggerAppComponent
 import com.example.testprojecthabits.ui.HabitsAdapter
 import com.example.testprojecthabits.ui.habit.NewHabitActivity
 import com.example.testprojecthabits.ui.modeles.Habit
+import com.example.testprojecthabits.ui.modeles.HabitModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 //    val customAdapter = HabitsAdapter {habit -> onClickEditHabit(habit) }
 
     val customAdapter: HabitsAdapter by lazy { HabitsAdapter { habit -> onClickEditHabit(habit) } }
+
+    var isSave = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
             val intent = Intent(this, NewHabitActivity::class.java)
+            intent.putExtra("isSave", isSave)
             startActivity(intent)
         }
     }
@@ -62,7 +66,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickEditHabit(habit: Habit){
+        isSave = false
         val intent = Intent(this, NewHabitActivity::class.java)
+        val l = habitToHabitModel(habit)
+        intent.putExtra("habit", habitToHabitModel(habit))
+        intent.putExtra("isSave", isSave)
         startActivity(intent)
     }
+
+    fun habitToHabitModel(habit: Habit) =
+        with(habit){
+            HabitModel(id, name, description, priority, type, number, interval, color)
+        }
 }

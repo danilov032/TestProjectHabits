@@ -1,11 +1,8 @@
 package com.example.testprojecthabits.ui.modeles
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import java.io.Serializable
 
-@Entity
-data class Habit(
-    @PrimaryKey(autoGenerate = true)
+data class HabitModel(
     val id: Int = 0,
     val name: String = "",
     val description: String = "",
@@ -13,4 +10,5 @@ data class Habit(
     val type: String = "",
     val number: Short = 0,
     val interval: Short = 0,
-    val color: String = "")
+    val color: String = ""
+) : Serializable
