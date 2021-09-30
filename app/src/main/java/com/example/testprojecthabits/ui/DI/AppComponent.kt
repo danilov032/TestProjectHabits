@@ -1,6 +1,7 @@
 package com.example.testprojecthabits.ui.DI
 
-import com.example.testprojecthabits.ui.habit.NewHabitActivity
+import com.example.testprojecthabits.ui.habit.NewHabitFragment
+import com.example.testprojecthabits.ui.main.ListHabitFragment
 import com.example.testprojecthabits.ui.main.MainActivity
 import dagger.Component
 
@@ -8,5 +9,6 @@ import dagger.Component
 interface AppComponent {
 
     fun injectActivity(activity: MainActivity)
-    fun injectNewHabitActivity(activity: NewHabitActivity)
+    fun injectNewHabitFragment(activity: NewHabitFragment)
+    fun injectListHabitFragment(activity: ListHabitFragment)
 }

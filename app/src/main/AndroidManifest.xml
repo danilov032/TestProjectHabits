@@ -10,11 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestProjectHabits">
         <activity
-            android:name=".ui.habit.NewHabitActivity"
-            android:exported="true" >
-
-        </activity>
-        <activity
             android:name="com.example.testprojecthabits.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>

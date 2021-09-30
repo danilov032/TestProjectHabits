@@ -3,11 +3,12 @@ package com.example.testprojecthabits.ui.habit
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Point
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Display
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import com.example.testprojecthabits.R
 import com.example.testprojecthabits.ui.DI.AppModule
 import com.example.testprojecthabits.ui.DI.DaggerAppComponent
@@ -16,32 +17,48 @@ import com.example.testprojecthabits.ui.modeles.Habit
 import com.example.testprojecthabits.ui.modeles.HabitModel
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_new_habit.*
+import kotlinx.android.synthetic.main.fragment_new_habit.*
 import javax.inject.Inject
-import android.widget.LinearLayout
-import androidx.core.view.marginEnd
-import android.util.DisplayMetrics
 
+private const val ARG_ISSAVE = "isSave"
+private const val ARG_HABIT = "habit"
 
-class NewHabitActivity : AppCompatActivity() {
+class NewHabitFragment : Fragment() {
+    private var isSave: Boolean = false
+    private var habit: HabitModel = HabitModel()
     @Inject
     lateinit var repository: NewHabitRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_habit)
+        arguments?.let {
+            isSave = it.getBoolean(ARG_ISSAVE)
+            habit = it.getSerializable(ARG_HABIT) as HabitModel
+        }
 
         DaggerAppComponent.builder()
-            .appModule(AppModule(application))
+            .appModule(AppModule(requireActivity().application))
             .build()
-            .injectNewHabitActivity(this)
+            .injectNewHabitFragment(this)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_new_habit, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initScroll()
 
-        val isSave = getIntent().getSerializableExtra("isSave")
+//        val isSave = getIntent().getSerializableExtra("isSave")
+//        val isSave = false
         var habitM = HabitModel()
         if (isSave == false) {
-            habitM = intent.getSerializableExtra("habit") as HabitModel
+//            habitM = intent.getSerializableExtra("habit") as HabitModel
             fillInTheFields(habitM)
         }
 
@@ -75,11 +92,10 @@ class NewHabitActivity : AppCompatActivity() {
                 updateHabit(habit)
             }
 
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
         }
     }
-
     fun fillInTheFields(habit: HabitModel) {
         ed_name_habit.setText(habit.name)
         ed_description_habit.setText(habit.description)
@@ -139,13 +155,13 @@ class NewHabitActivity : AppCompatActivity() {
             "#FFFFFF",
             "#000000"
         )
-        val displayMetrics = applicationContext.resources.displayMetrics
+        val displayMetrics = requireContext().resources.displayMetrics
         val height = displayMetrics.heightPixels
 
         val heightView = height / 10
 
         for (i in 0..15) {
-            var view = View(this)
+            var view = View(requireContext())
 
             var layoutParams = LinearLayout.LayoutParams(
                 heightView,
@@ -159,5 +175,17 @@ class NewHabitActivity : AppCompatActivity() {
 
             scroll_container.addView(view)
         }
+    }
+
+    companion object {
+
+        @JvmStatic
+        fun newInstance(isSave: Boolean, param2: String) =
+            NewHabitFragment().apply {
+                arguments = Bundle().apply {
+                    putBoolean(ARG_ISSAVE, isSave)
+                    putString(ARG_HABIT, param2)
+                }
+            }
     }
 }
