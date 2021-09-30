@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.testprojecthabits.R
 import com.example.testprojecthabits.ui.DI.AppModule
 import com.example.testprojecthabits.ui.DI.DaggerAppComponent
+import com.example.testprojecthabits.ui.habit.NewHabitFragment
+import com.example.testprojecthabits.ui.modeles.HabitModel
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {

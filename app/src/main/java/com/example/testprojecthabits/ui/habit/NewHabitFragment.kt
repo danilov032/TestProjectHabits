@@ -1,18 +1,16 @@
 package com.example.testprojecthabits.ui.habit
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import com.example.testprojecthabits.R
 import com.example.testprojecthabits.ui.DI.AppModule
 import com.example.testprojecthabits.ui.DI.DaggerAppComponent
-import com.example.testprojecthabits.ui.main.MainActivity
 import com.example.testprojecthabits.ui.modeles.Habit
 import com.example.testprojecthabits.ui.modeles.HabitModel
 import io.reactivex.Observable
@@ -54,11 +52,9 @@ class NewHabitFragment : Fragment() {
 
         initScroll()
 
-//        val isSave = getIntent().getSerializableExtra("isSave")
-//        val isSave = false
         var habitM = HabitModel()
         if (isSave == false) {
-//            habitM = intent.getSerializableExtra("habit") as HabitModel
+            habitM = habit
             fillInTheFields(habitM)
         }
 
@@ -91,9 +87,7 @@ class NewHabitFragment : Fragment() {
                 )
                 updateHabit(habit)
             }
-
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
+            fragmentManager?.popBackStack()
         }
     }
     fun fillInTheFields(habit: HabitModel) {
@@ -180,11 +174,11 @@ class NewHabitFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(isSave: Boolean, param2: String) =
+        fun newInstance(isSave: Boolean, habit: HabitModel) =
             NewHabitFragment().apply {
                 arguments = Bundle().apply {
                     putBoolean(ARG_ISSAVE, isSave)
-                    putString(ARG_HABIT, param2)
+                    putSerializable(ARG_HABIT, habit)
                 }
             }
     }
