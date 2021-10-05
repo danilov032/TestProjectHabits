@@ -1,32 +1,35 @@
 package com.example.testprojecthabits.ui.main
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testprojecthabits.R
 import com.example.testprojecthabits.ui.DI.AppModule
 import com.example.testprojecthabits.ui.DI.DaggerAppComponent
 import com.example.testprojecthabits.ui.HabitsAdapter
+import com.example.testprojecthabits.ui.ListHabitViewModelFactory
 import com.example.testprojecthabits.ui.habit.NewHabitFragment
 import com.example.testprojecthabits.ui.modeles.Habit
 import com.example.testprojecthabits.ui.modeles.HabitModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_list_habit.*
 import javax.inject.Inject
-
 
 class ListHabitFragment : Fragment() {
 
     @Inject
     lateinit var repository: MainRepository
 
+    @Inject
+    lateinit var factory: ListHabitViewModelFactory
+
     val customAdapter: HabitsAdapter by lazy { HabitsAdapter { habit -> onClickEditHabit(habit) } }
+
+    private lateinit var listHabitViewModel: ListHabitViewModel
 
     var isSave = true
 
@@ -37,6 +40,8 @@ class ListHabitFragment : Fragment() {
             .appModule(AppModule(requireActivity().application))
             .build()
             .injectListHabitFragment(this)
+
+        setupViewModel()
     }
 
     override fun onCreateView(
@@ -65,19 +70,13 @@ class ListHabitFragment : Fragment() {
         }
     }
 
-    @SuppressLint("CheckResult")
-    fun getHabits() {
-        repository.getHabits()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                customAdapter.updateData(it)
-            }, {
-                val er = 10
-            })
+    private fun getHabits() {
+        listHabitViewModel.getLiveDataHamits().observe(this, Observer {
+            customAdapter.updateData(it)
+        })
     }
 
-    fun onClickEditHabit(habit: Habit) {
+    private fun onClickEditHabit(habit: Habit) {
         isSave = false
         fragmentManager?.beginTransaction()
             ?.replace(R.id.container, NewHabitFragment.newInstance(false, habitToHabitModel(habit)))
@@ -85,10 +84,17 @@ class ListHabitFragment : Fragment() {
             ?.commit()
     }
 
-    fun habitToHabitModel(habit: Habit) =
+    private fun habitToHabitModel(habit: Habit) =
         with(habit) {
             HabitModel(id, name, description, priority, type, number, interval, color)
         }
+
+    private fun setupViewModel() {
+        listHabitViewModel = ViewModelProviders.of(
+            this,
+            factory
+        ).get(ListHabitViewModel::class.java)
+    }
 
     companion object {
         @JvmStatic

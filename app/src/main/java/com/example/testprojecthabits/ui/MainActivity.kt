@@ -1,18 +1,15 @@
-package com.example.testprojecthabits.ui.main
+package com.example.testprojecthabits.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.testprojecthabits.R
 import com.example.testprojecthabits.ui.DI.AppModule
 import com.example.testprojecthabits.ui.DI.DaggerAppComponent
-import com.example.testprojecthabits.ui.habit.NewHabitFragment
-import com.example.testprojecthabits.ui.modeles.HabitModel
+import com.example.testprojecthabits.ui.main.ListHabitFragment
 
 
 class MainActivity : AppCompatActivity(){
 
-    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
