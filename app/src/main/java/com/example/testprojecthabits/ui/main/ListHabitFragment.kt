@@ -1,11 +1,11 @@
 package com.example.testprojecthabits.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testprojecthabits.R
@@ -22,9 +22,6 @@ import javax.inject.Inject
 class ListHabitFragment : Fragment() {
 
     @Inject
-    lateinit var repository: MainRepository
-
-    @Inject
     lateinit var factory: ListHabitViewModelFactory
 
     val customAdapter: HabitsAdapter by lazy { HabitsAdapter { habit -> onClickEditHabit(habit) } }
@@ -35,7 +32,7 @@ class ListHabitFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Log.d("Fragment1", "onCreate")
         DaggerAppComponent.builder()
             .appModule(AppModule(requireActivity().application))
             .build()
@@ -59,7 +56,10 @@ class ListHabitFragment : Fragment() {
             adapter = customAdapter
         }
 
-        getHabits()
+        listHabitViewModel.getLiveDataHabits().observe(this, {
+            customAdapter.updateData(it)
+            Log.d("AAA", "Update data")
+        })
 
         fab.setOnClickListener {
             fragmentManager
@@ -68,12 +68,6 @@ class ListHabitFragment : Fragment() {
                 ?.addToBackStack(null)
                 ?.commit()
         }
-    }
-
-    private fun getHabits() {
-        listHabitViewModel.getLiveDataHamits().observe(this, Observer {
-            customAdapter.updateData(it)
-        })
     }
 
     private fun onClickEditHabit(habit: Habit) {

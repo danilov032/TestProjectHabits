@@ -1,5 +1,7 @@
 package com.example.testprojecthabits.ui.main
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.testprojecthabits.ui.modeles.Habit
@@ -14,7 +16,8 @@ class ListHabitViewModel(private val repository: MainRepository) : ViewModel() {
         getHabits()
     }
 
-    private fun getHabits() {
+    fun getHabits() {
+        Log.d("AAA", "getHabits")
         repository.getHabits()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -25,5 +28,5 @@ class ListHabitViewModel(private val repository: MainRepository) : ViewModel() {
             })
     }
 
-    fun getLiveDataHamits(): MutableLiveData<List<Habit>> = data
+    fun getLiveDataHabits(): LiveData<List<Habit>> = data
 }
