@@ -36,12 +36,20 @@ class NewHabitFragment : Fragment() {
 
     private lateinit var newHabitViewModel: NewHabitViewModel
 
+    private fun setupViewModel() {
+        newHabitViewModel = ViewModelProviders.of(
+            this,
+            factory
+        ).get(NewHabitViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             isSave = it.getBoolean(ARG_ISSAVE)
             habit = it.getSerializable(ARG_HABIT) as HabitModel
         }
+
 
         DaggerAppComponent.builder()
             .appModule(AppModule(requireActivity().application))
@@ -178,13 +186,6 @@ class NewHabitFragment : Fragment() {
 
             scroll_container.addView(view)
         }
-    }
-
-    private fun setupViewModel() {
-        newHabitViewModel = ViewModelProviders.of(
-            this,
-            factory
-        ).get(NewHabitViewModel::class.java)
     }
 
     companion object {

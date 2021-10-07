@@ -25,4 +25,6 @@ class AppModule(private val application: Application) {
     fun provideNewHabitRepository(): NewHabitRepository {
         return NewHabitRepository(db)
     }
+
+
 }

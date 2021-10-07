@@ -12,6 +12,7 @@ class ListHabitViewModel(private val repository: MainRepository) : ViewModel() {
 
     private val data = MutableLiveData<List<Habit>>()
 
+
     init {
         getHabits()
     }

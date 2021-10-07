@@ -1,12 +1,17 @@
 package com.example.testprojecthabits.ui.habit
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.testprojecthabits.ui.modeles.Habit
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-class NewHabitViewModel (private val repository: NewHabitRepository) : ViewModel() {
+class NewHabitViewModel(
+    private val repository: NewHabitRepository
+//    private val isSave: Boolean,
+//    private val habit: Habit
+) : ViewModel() {
 
     private val data = MutableLiveData<Habit>()
 
@@ -21,5 +26,5 @@ class NewHabitViewModel (private val repository: NewHabitRepository) : ViewModel
             })
     }
 
-
+    fun getLiveDataHabit(): LiveData<Habit> = data
 }

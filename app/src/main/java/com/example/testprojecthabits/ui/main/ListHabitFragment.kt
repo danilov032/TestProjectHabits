@@ -28,8 +28,6 @@ class ListHabitFragment : Fragment() {
 
     private lateinit var listHabitViewModel: ListHabitViewModel
 
-    var isSave = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("Fragment1", "onCreate")
@@ -71,7 +69,6 @@ class ListHabitFragment : Fragment() {
     }
 
     private fun onClickEditHabit(habit: Habit) {
-        isSave = false
         fragmentManager?.beginTransaction()
             ?.replace(R.id.container, NewHabitFragment.newInstance(false, habitToHabitModel(habit)))
             ?.addToBackStack(null)
