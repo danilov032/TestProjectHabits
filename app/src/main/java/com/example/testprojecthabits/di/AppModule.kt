@@ -1,10 +1,10 @@
-package com.example.testprojecthabits.ui.DI
+package com.example.testprojecthabits.di
 
 import android.app.Application
-import com.example.testprojecthabits.ui.DB.HabitsDao
-import com.example.testprojecthabits.ui.DB.dbAbstract
-import com.example.testprojecthabits.ui.habit.NewHabitRepository
-import com.example.testprojecthabits.ui.main.MainRepository
+import com.example.testprojecthabits.data.db.HabitsDao
+import com.example.testprojecthabits.data.db.dbAbstract
+import com.example.testprojecthabits.data.repositories.NewHabitRepository
+import com.example.testprojecthabits.data.repositories.MainRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

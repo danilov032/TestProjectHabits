@@ -1,8 +1,9 @@
-package com.example.testprojecthabits.ui.habit
+package com.example.testprojecthabits.presentation.habit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.testprojecthabits.ui.DB.HabitsDao
+import com.example.testprojecthabits.data.db.HabitsDao
+import com.example.testprojecthabits.data.repositories.NewHabitRepository
 import javax.inject.Inject
 
 class NewHabitViewModelFactory @Inject constructor(val db: HabitsDao) : ViewModelProvider.Factory {

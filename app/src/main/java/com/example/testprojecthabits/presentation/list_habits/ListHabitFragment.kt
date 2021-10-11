@@ -1,4 +1,4 @@
-package com.example.testprojecthabits.ui.main
+package com.example.testprojecthabits.presentation.list_habits
 
 import android.os.Bundle
 import android.util.Log
@@ -9,13 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testprojecthabits.R
-import com.example.testprojecthabits.ui.DI.AppModule
-import com.example.testprojecthabits.ui.DI.DaggerAppComponent
-import com.example.testprojecthabits.ui.HabitsAdapter
-import com.example.testprojecthabits.ui.ListHabitViewModelFactory
-import com.example.testprojecthabits.ui.habit.NewHabitFragment
-import com.example.testprojecthabits.ui.modeles.Habit
-import com.example.testprojecthabits.ui.modeles.HabitModel
+import com.example.testprojecthabits.di.AppModule
+import com.example.testprojecthabits.di.DaggerAppComponent
+import com.example.testprojecthabits.presentation.adapters.HabitsAdapter
+import com.example.testprojecthabits.presentation.habit.NewHabitFragment
+import com.example.testprojecthabits.domain.modeles.Habit
+import com.example.testprojecthabits.domain.modeles.HabitModel
 import kotlinx.android.synthetic.main.fragment_list_habit.*
 import javax.inject.Inject
 

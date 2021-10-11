@@ -1,11 +1,11 @@
-package com.example.testprojecthabits.ui
+package com.example.testprojecthabits.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.testprojecthabits.R
-import com.example.testprojecthabits.ui.DI.AppModule
-import com.example.testprojecthabits.ui.DI.DaggerAppComponent
-import com.example.testprojecthabits.ui.main.ListHabitFragment
+import com.example.testprojecthabits.di.AppModule
+import com.example.testprojecthabits.di.DaggerAppComponent
+import com.example.testprojecthabits.presentation.list_habits.ListHabitFragment
 
 
 class MainActivity : AppCompatActivity(){

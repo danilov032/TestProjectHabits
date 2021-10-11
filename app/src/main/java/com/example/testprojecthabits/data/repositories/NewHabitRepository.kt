@@ -1,7 +1,7 @@
-package com.example.testprojecthabits.ui.habit
+package com.example.testprojecthabits.data.repositories
 
-import com.example.testprojecthabits.ui.DB.HabitsDao
-import com.example.testprojecthabits.ui.modeles.Habit
+import com.example.testprojecthabits.data.db.HabitsDao
+import com.example.testprojecthabits.domain.modeles.Habit
 import javax.inject.Inject
 
 class NewHabitRepository @Inject constructor(val db: HabitsDao) {

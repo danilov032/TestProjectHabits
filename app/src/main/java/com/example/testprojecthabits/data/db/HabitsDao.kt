@@ -1,12 +1,11 @@
-package com.example.testprojecthabits.ui.DB
+package com.example.testprojecthabits.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.testprojecthabits.ui.modeles.Habit
+import com.example.testprojecthabits.domain.modeles.Habit
 import io.reactivex.Observable
-import androidx.room.Update
 
 @Dao
 interface HabitsDao {

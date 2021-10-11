@@ -1,9 +1,10 @@
-package com.example.testprojecthabits.ui.habit
+package com.example.testprojecthabits.presentation.habit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.testprojecthabits.ui.modeles.Habit
+import com.example.testprojecthabits.data.repositories.NewHabitRepository
+import com.example.testprojecthabits.domain.modeles.Habit
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 

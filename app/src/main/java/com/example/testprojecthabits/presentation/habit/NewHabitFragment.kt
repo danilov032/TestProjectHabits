@@ -1,4 +1,4 @@
-package com.example.testprojecthabits.ui.habit
+package com.example.testprojecthabits.presentation.habit
 
 import android.graphics.Color
 import android.os.Bundle
@@ -9,14 +9,12 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.testprojecthabits.R
-import com.example.testprojecthabits.ui.DI.AppModule
-import com.example.testprojecthabits.ui.DI.DaggerAppComponent
-import com.example.testprojecthabits.ui.ListHabitViewModelFactory
-import com.example.testprojecthabits.ui.main.ListHabitViewModel
-import com.example.testprojecthabits.ui.modeles.Habit
-import com.example.testprojecthabits.ui.modeles.HabitModel
+import com.example.testprojecthabits.data.repositories.NewHabitRepository
+import com.example.testprojecthabits.di.AppModule
+import com.example.testprojecthabits.di.DaggerAppComponent
+import com.example.testprojecthabits.domain.modeles.Habit
+import com.example.testprojecthabits.domain.modeles.HabitModel
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_new_habit.*
 import javax.inject.Inject

@@ -1,7 +1,7 @@
-package com.example.testprojecthabits.ui.main
+package com.example.testprojecthabits.data.repositories
 
-import com.example.testprojecthabits.ui.DB.HabitsDao
-import com.example.testprojecthabits.ui.modeles.Habit
+import com.example.testprojecthabits.data.db.HabitsDao
+import com.example.testprojecthabits.domain.modeles.Habit
 import io.reactivex.Observable
 import javax.inject.Inject
 

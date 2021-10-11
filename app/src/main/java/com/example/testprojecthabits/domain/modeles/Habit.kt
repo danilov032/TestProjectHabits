@@ -1,4 +1,4 @@
-package com.example.testprojecthabits.ui.modeles
+package com.example.testprojecthabits.domain.modeles
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

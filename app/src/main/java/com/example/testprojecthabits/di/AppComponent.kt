@@ -1,8 +1,8 @@
-package com.example.testprojecthabits.ui.DI
+package com.example.testprojecthabits.di
 
-import com.example.testprojecthabits.ui.habit.NewHabitFragment
-import com.example.testprojecthabits.ui.main.ListHabitFragment
-import com.example.testprojecthabits.ui.MainActivity
+import com.example.testprojecthabits.presentation.habit.NewHabitFragment
+import com.example.testprojecthabits.presentation.list_habits.ListHabitFragment
+import com.example.testprojecthabits.presentation.MainActivity
 import dagger.Component
 
 @Component(modules = [AppModule::class])

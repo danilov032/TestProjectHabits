@@ -1,10 +1,11 @@
-package com.example.testprojecthabits.ui
+package com.example.testprojecthabits.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testprojecthabits.R
-import com.example.testprojecthabits.ui.modeles.Habit
+import com.example.testprojecthabits.domain.modeles.Habit
+import com.example.testprojecthabits.presentation.holders.HabitsViewHolder
 
 
 class HabitsAdapter (private val editHabitListener: (Habit) -> Unit): RecyclerView.Adapter<HabitsViewHolder>(){

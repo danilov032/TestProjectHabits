@@ -1,10 +1,11 @@
-package com.example.testprojecthabits.ui.main
+package com.example.testprojecthabits.presentation.list_habits
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.testprojecthabits.ui.modeles.Habit
+import com.example.testprojecthabits.data.repositories.MainRepository
+import com.example.testprojecthabits.domain.modeles.Habit
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
