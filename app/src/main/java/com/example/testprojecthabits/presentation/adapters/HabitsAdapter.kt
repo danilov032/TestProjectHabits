@@ -7,7 +7,6 @@ import com.example.testprojecthabits.R
 import com.example.testprojecthabits.domain.modeles.Habit
 import com.example.testprojecthabits.presentation.holders.HabitsViewHolder
 
-
 class HabitsAdapter (private val editHabitListener: (Habit) -> Unit): RecyclerView.Adapter<HabitsViewHolder>(){
 
     private val habits: MutableList<Habit> = mutableListOf()

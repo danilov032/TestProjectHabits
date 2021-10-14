@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.testprojecthabits.data.db.HabitsDao
 import com.example.testprojecthabits.data.repositories.NewHabitRepository
+import com.example.testprojecthabits.presentation.viewmodeles.NewHabitViewModel
 import javax.inject.Inject
 
 class NewHabitViewModelFactory @Inject constructor(val db: HabitsDao) : ViewModelProvider.Factory {

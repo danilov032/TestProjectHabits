@@ -2,6 +2,7 @@ package com.example.testprojecthabits.domain.modeles
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class Habit(
@@ -13,4 +14,4 @@ data class Habit(
     val type: String = "",
     val number: Short = 0,
     val interval: Short = 0,
-    val color: String = "")
+    val color: String = "") : Serializable

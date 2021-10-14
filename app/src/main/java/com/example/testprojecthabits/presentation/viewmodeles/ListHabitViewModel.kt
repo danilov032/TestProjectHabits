@@ -1,4 +1,4 @@
-package com.example.testprojecthabits.presentation.list_habits
+package com.example.testprojecthabits.presentation.viewmodeles
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -12,11 +12,7 @@ import io.reactivex.schedulers.Schedulers
 class ListHabitViewModel(private val repository: MainRepository) : ViewModel() {
 
     private val data = MutableLiveData<List<Habit>>()
-
-
-    init {
-        getHabits()
-    }
+    private val messageError = MutableLiveData<String>()
 
     fun getHabits() {
         Log.d("AAA", "getHabits")
@@ -26,9 +22,10 @@ class ListHabitViewModel(private val repository: MainRepository) : ViewModel() {
             .subscribe({
                 data.value = it
             }, {
-                val er = "Error"
+                messageError.value = "Ошибка при загрузки"
             })
     }
 
     fun getLiveDataHabits(): LiveData<List<Habit>> = data
+    fun getLiveDataMessageError(): LiveData<String> = messageError
 }

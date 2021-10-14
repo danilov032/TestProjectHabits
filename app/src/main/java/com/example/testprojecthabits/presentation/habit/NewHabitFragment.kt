@@ -2,10 +2,12 @@ package com.example.testprojecthabits.presentation.habit
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.testprojecthabits.R
@@ -13,9 +15,7 @@ import com.example.testprojecthabits.data.repositories.NewHabitRepository
 import com.example.testprojecthabits.di.AppModule
 import com.example.testprojecthabits.di.DaggerAppComponent
 import com.example.testprojecthabits.domain.modeles.Habit
-import com.example.testprojecthabits.domain.modeles.HabitModel
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
+import com.example.testprojecthabits.presentation.viewmodeles.NewHabitViewModel
 import kotlinx.android.synthetic.main.fragment_new_habit.*
 import javax.inject.Inject
 
@@ -24,7 +24,7 @@ private const val ARG_HABIT = "habit"
 
 class NewHabitFragment : Fragment() {
     private var isSave: Boolean = false
-    private var habit: HabitModel = HabitModel()
+    private var habit: Habit = Habit()
 
     @Inject
     lateinit var repository: NewHabitRepository
@@ -45,9 +45,8 @@ class NewHabitFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             isSave = it.getBoolean(ARG_ISSAVE)
-            habit = it.getSerializable(ARG_HABIT) as HabitModel
+            habit = it.getSerializable(ARG_HABIT) as Habit
         }
-
 
         DaggerAppComponent.builder()
             .appModule(AppModule(requireActivity().application))
@@ -55,6 +54,7 @@ class NewHabitFragment : Fragment() {
             .injectNewHabitFragment(this)
 
         setupViewModel()
+        newHabitViewModel.setData(isSave, habit)
     }
 
     override fun onCreateView(
@@ -69,81 +69,39 @@ class NewHabitFragment : Fragment() {
 
         initScroll()
 
-        var habitM = HabitModel()
-        if (!isSave) {
-            habitM = habit
-            fillInTheFields(habitM)
-        }
+        newHabitViewModel.getIsDone().observe(this, {
+            Log.d("AAA", "fragmentManager")
+            fragmentManager?.popBackStack()
+        })
+
+        newHabitViewModel.getLiveDataMessageError().observe(this,{
+            showMessageError(it ?: "Unknown error")
+        })
+
+        newHabitViewModel.getLiveDataHabit().observe(this, {
+            fillInTheFields(it)
+        })
 
         bt_save.setOnClickListener {
-            var radio = ""
-            radio = if (radio_useful.isChecked) radio_useful.text.toString()
+            val radio = if (radio_useful.isChecked) radio_useful.text.toString()
             else radio_harmful.text.toString()
 
-            if (isSave) {
-                var habit = Habit(
-                    name = ed_name_habit.text.toString(),
-                    description = ed_description_habit.text.toString(),
-                    priority = spinner_priority.selectedItem.toString(),
-                    type = radio,
-                    number = ed_number.text.toString().toShort(),
-                    interval = ed_interval.text.toString().toShort(),
-                    color = "000000"
-                )
-                insertHabit(habit)
-            } else {
-                var habit = Habit(
-                    id = habitM.id,
-                    name = ed_name_habit.text.toString(),
-                    description = ed_description_habit.text.toString(),
-                    priority = spinner_priority.selectedItem.toString(),
-                    type = radio,
-                    number = ed_number.text.toString().toShort(),
-                    interval = ed_interval.text.toString().toShort(),
-                    color = "000000"
-                )
-                updateHabit(habit)
-            }
-            fragmentManager?.popBackStack()
+            newHabitViewModel.performAnAction(
+                name = ed_name_habit.text.toString(),
+                description = ed_description_habit.text.toString(),
+                priority = spinner_priority.selectedItem.toString(),
+                radio = radio,
+                number = ed_number.text.toString().toShort(),
+                interval = ed_interval.text.toString().toShort()
+            )
         }
     }
 
-    private fun fillInTheFields(habit: HabitModel) {
+    private fun fillInTheFields(habit: Habit) {
         ed_name_habit.setText(habit.name)
         ed_description_habit.setText(habit.description)
         ed_number.setText(habit.number.toString())
         ed_interval.setText(habit.interval.toString())
-    }
-
-    fun insertHabit(habit: Habit) {
-        Observable.just(habit)
-            .subscribeOn(Schedulers.io())
-//            .observeOn(Schedulers.io())
-            .subscribe({
-                repository.addHabit(it)
-            }, {
-                val er = "Error"
-            })
-    }
-
-    fun updateHabit(habit: Habit) {
-        Observable.just(habit)
-            .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                repository.updateHabit(
-                    it.id,
-                    it.name,
-                    it.description,
-                    it.priority,
-                    it.type,
-                    it.number,
-                    it.interval,
-                    it.color
-                )
-            }, {
-                val er = "Error"
-            })
     }
 
     private fun initScroll() {
@@ -186,10 +144,13 @@ class NewHabitFragment : Fragment() {
         }
     }
 
-    companion object {
+    private fun showMessageError(message: String){
+        Toast.makeText(requireContext(),message, Toast.LENGTH_SHORT).show()
+    }
 
+    companion object {
         @JvmStatic
-        fun newInstance(isSave: Boolean, habit: HabitModel) =
+        fun newInstance(isSave: Boolean, habit: Habit) =
             NewHabitFragment().apply {
                 arguments = Bundle().apply {
                     putBoolean(ARG_ISSAVE, isSave)
