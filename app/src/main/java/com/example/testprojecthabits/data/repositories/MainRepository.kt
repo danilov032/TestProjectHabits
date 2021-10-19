@@ -7,5 +7,12 @@ import javax.inject.Inject
 
 class MainRepository @Inject constructor(val db: HabitsDao) {
 
-    fun getHabits() : Observable<List<Habit>> = db.getHabits()
+    fun getHabits(): Observable<List<Habit>> = db.getHabits()
+        .map { listHabit ->
+            listHabit.map { habit ->
+                with(habit){
+                    Habit(id, name, description, priority, type, number, interval, color)
+                }
+            }
+        }
 }

@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.testprojecthabits.data.repositories.NewHabitRepository
+import com.example.testprojecthabits.data.entity_model.EntityHabit
 import com.example.testprojecthabits.domain.modeles.Habit
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_new_habit.*
 
 class NewHabitViewModel(
     private val repository: NewHabitRepository

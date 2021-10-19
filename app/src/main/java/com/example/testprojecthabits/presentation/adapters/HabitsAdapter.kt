@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testprojecthabits.R
+import com.example.testprojecthabits.data.entity_model.EntityHabit
 import com.example.testprojecthabits.domain.modeles.Habit
 import com.example.testprojecthabits.presentation.holders.HabitsViewHolder
 
 class HabitsAdapter (private val editHabitListener: (Habit) -> Unit): RecyclerView.Adapter<HabitsViewHolder>(){
 
-    private val habits: MutableList<Habit> = mutableListOf()
+    private val entityHabits: MutableList<Habit> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitsViewHolder {
         val view =LayoutInflater.from(parent.context).
@@ -18,16 +19,16 @@ class HabitsAdapter (private val editHabitListener: (Habit) -> Unit): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: HabitsViewHolder, position: Int) {
-        holder.bindItem(habits[position])
+        holder.bindItem(entityHabits[position])
     }
 
     override fun getItemCount(): Int {
-        return habits.size
+        return entityHabits.size
     }
 
     fun updateData(list: List<Habit>){
-        habits.clear()
-        habits.addAll(list)
+        entityHabits.clear()
+        entityHabits.addAll(list)
         notifyDataSetChanged()
     }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testprojecthabits.R
 import com.example.testprojecthabits.di.AppModule
 import com.example.testprojecthabits.di.DaggerAppComponent
+import com.example.testprojecthabits.data.entity_model.EntityHabit
 import com.example.testprojecthabits.domain.modeles.Habit
 import com.example.testprojecthabits.presentation.adapters.HabitsAdapter
 import com.example.testprojecthabits.presentation.habit.NewHabitFragment
@@ -24,7 +25,13 @@ class ListHabitFragment : Fragment() {
     @Inject
     lateinit var factory: ListHabitViewModelFactory
 
-    private val customAdapter: HabitsAdapter by lazy { HabitsAdapter { habit -> onClickEditHabit(habit) } }
+    private val customAdapter: HabitsAdapter by lazy {
+        HabitsAdapter { habit ->
+            onClickEditHabit(
+                habit
+            )
+        }
+    }
 
     private lateinit var listHabitViewModel: ListHabitViewModel
 
@@ -61,7 +68,7 @@ class ListHabitFragment : Fragment() {
             Log.d("AAA", "Update data")
         })
 
-        listHabitViewModel.getLiveDataMessageError().observe(this,{
+        listHabitViewModel.getLiveDataMessageError().observe(this, {
             showMessageError(it ?: "Unknown error")
         })
 
@@ -76,7 +83,7 @@ class ListHabitFragment : Fragment() {
 
     private fun onClickEditHabit(habit: Habit) {
         fragmentManager?.beginTransaction()
-            ?.replace(R.id.container, NewHabitFragment.newInstance(false,habit))
+            ?.replace(R.id.container, NewHabitFragment.newInstance(false, habit))
             ?.addToBackStack(null)
             ?.commit()
     }
@@ -88,8 +95,8 @@ class ListHabitFragment : Fragment() {
         ).get(ListHabitViewModel::class.java)
     }
 
-    private fun showMessageError(message: String){
-        Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
+    private fun showMessageError(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

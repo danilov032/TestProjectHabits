@@ -4,21 +4,21 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.testprojecthabits.domain.modeles.Habit
+import com.example.testprojecthabits.data.entity_model.EntityHabit
 import io.reactivex.Observable
 
 @Dao
 interface HabitsDao {
-    @Query("SELECT * FROM Habit")
-    fun getHabits(): Observable<List<Habit>>
+    @Query("SELECT * FROM EntityHabit")
+    fun getHabits(): Observable<List<EntityHabit>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertHabit(vararg todo: Habit)
+    fun insertHabit(vararg todo: EntityHabit)
 
-    @Query("DELETE from Habit WHERE name = :name")
+    @Query("DELETE from EntityHabit WHERE name = :name")
     fun deleteHabit(name: String)
 
-    @Query("UPDATE Habit SET name = :name, description = :description, priority = :priority, type = :type, number = :number, interval = :interval, color = :color WHERE id = :id")
+    @Query("UPDATE EntityHabit SET name = :name, description = :description, priority = :priority, type = :type, number = :number, interval = :interval, color = :color WHERE id = :id")
     fun update(
         id: Int,
         name: String,

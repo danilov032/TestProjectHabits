@@ -14,6 +14,7 @@ import com.example.testprojecthabits.R
 import com.example.testprojecthabits.data.repositories.NewHabitRepository
 import com.example.testprojecthabits.di.AppModule
 import com.example.testprojecthabits.di.DaggerAppComponent
+import com.example.testprojecthabits.data.entity_model.EntityHabit
 import com.example.testprojecthabits.domain.modeles.Habit
 import com.example.testprojecthabits.presentation.viewmodeles.NewHabitViewModel
 import kotlinx.android.synthetic.main.fragment_new_habit.*

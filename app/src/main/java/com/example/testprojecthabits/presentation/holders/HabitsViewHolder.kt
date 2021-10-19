@@ -2,6 +2,7 @@ package com.example.testprojecthabits.presentation.holders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testprojecthabits.data.entity_model.EntityHabit
 import com.example.testprojecthabits.domain.modeles.Habit
 import kotlinx.android.synthetic.main.item_habit.view.*
 
